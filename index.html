@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprint Lab India Ekam – Training and Diet Plan for Sprinters</title>
+<meta name="description" content="A weekly training plan, fuelling guide and macro calculator for 100m and 200m sprinters.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#14213d;--chalk:#f7f7f4;--blue:#2454a6;--line:#f2c230;--mute:#5b6478;--rule:#d9dbe1;--card:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.6 Barlow,system-ui,sans-serif;color:var(--ink);background:var(--chalk)}
+h1,h2,h3{font-family:"Barlow Condensed",Impact,sans-serif;line-height:1.02;margin:0}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--line);outline-offset:2px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;max-width:1000px;margin:0 auto}
+.logo{font:800 22px "Barlow Condensed",sans-serif;letter-spacing:.5px}
+nav a{margin-left:18px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
+nav a:hover{color:var(--blue)}
+/* hero: running track lanes */
+.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden;padding:64px 0 72px}
+.hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 46px,rgba(255,255,255,.35) 46px 48px)}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(52px,11vw,132px);font-weight:800;text-transform:uppercase;max-width:9em}
+.hero p{max-width:34em;font-size:19px;margin:18px 0 26px;background:var(--blue);display:inline-block;padding:2px 0}
+.btn{display:inline-block;background:var(--line);color:var(--ink);font-weight:600;padding:13px 22px;border-radius:4px;text-decoration:none;border:0;font-size:16px;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(.95)}
+.facts{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:34px;background:var(--blue);padding:8px 0;width:fit-content}
+.facts b{font:800 30px "Barlow Condensed",sans-serif;display:block}
+.facts span{font-size:14px;opacity:.9}
+section{padding:60px 0}
+section h2{font-size:clamp(36px,6vw,56px);font-weight:800;margin-bottom:8px}
+.lead{color:var(--mute);max-width:40em;margin:0 0 28px}
+/* week plan */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{font:600 15px Barlow,sans-serif;padding:10px 16px;border:1px solid var(--rule);background:var(--card);border-radius:4px;cursor:pointer;color:var(--ink)}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.day{background:var(--card);border-left:8px solid var(--blue);padding:24px 26px;border-radius:0 6px 6px 0}
+.day h3{font-size:34px;font-weight:800}
+.day .focus{color:var(--mute);margin:2px 0 14px}
+.day table{width:100%;border-collapse:collapse}
+.day td{padding:9px 0;border-top:1px solid var(--rule);vertical-align:top}
+.day td:first-child{width:34%;font-weight:600;padding-right:14px}
+.tag{display:inline-block;font-size:13px;font-weight:600;background:var(--line);padding:1px 9px;border-radius:20px;margin-left:6px}
+.day.rest{border-left-color:var(--line)}
+/* principles */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px}
+.grid h3{font-size:28px;font-weight:800;margin-bottom:4px}
+.grid p{margin:0;color:var(--mute)}
+/* diet */
+.dietbg{background:var(--ink);color:#fff}
+.dietbg .lead{color:#c3c8d6}
+.calc{display:flex;flex-wrap:wrap;gap:14px;align-items:end;margin-bottom:22px}
+.calc label{display:block;font-size:14px;margin-bottom:4px;color:#c3c8d6}
+.calc input,.calc select{font:inherit;padding:10px 12px;border-radius:4px;border:0;min-width:140px}
+.out{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:34px}
+.out div{border-top:4px solid var(--line);padding-top:8px}
+.out b{font:800 42px "Barlow Condensed",sans-serif;display:block;line-height:1}
+.out span{font-size:14px;color:#c3c8d6}
+.meals{width:100%;border-collapse:collapse;font-size:16px}
+.meals th,.meals td{text-align:left;padding:12px 10px 12px 0;border-top:1px solid rgba(255,255,255,.2);vertical-align:top}
+.meals th{width:22%;font-weight:600;color:var(--line)}
+.meals caption{text-align:left;font:800 30px "Barlow Condensed",sans-serif;padding-bottom:8px}
+.note{margin-top:28px;font-size:15px;color:#c3c8d6}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:8px}
+.two ul{margin:6px 0 0;padding-left:20px}
+footer{padding:36px 0 50px;font-size:14px;color:var(--mute)}
+@media(max-width:600px){nav{display:none}.day td:first-child{width:40%}.meals th{width:28%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="logo">SPRINT LAB INDIA EKAM</div>
+  <nav aria-label="Main"><a href="#week">Weekly plan</a><a href="#rules">Principles</a><a href="#diet">Diet</a></nav>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Built for the first 100 metres</h1>
+    <p>A 6-day training week and a fuelling plan for 100m and 200m sprinters. Hard sessions stay hard, recovery gets equal attention.</p>
+    <a class="btn" href="#week">See the weekly plan</a>
+    <div class="facts">
+      <div><b>3</b><span>high-speed days</span></div>
+      <div><b>2</b><span>strength sessions</span></div>
+      <div><b>1</b><span>full rest day</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="week">
+  <div class="wrap">
+    <h2>Weekly training plan</h2>
+    <p class="lead">Pick a day. Warm up for 20 minutes before every session: jog, dynamic mobility, drills (A-skips, B-skips, high knees), and 2–3 build-up strides.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="panel" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="rules" style="background:#fff">
+  <div class="wrap">
+    <h2>Rules that make the plan work</h2>
+    <p class="lead">Sprinting is a skill trained fresh. These are the habits behind the sessions.</p>
+    <div class="grid">
+      <div><h3>Full recovery between reps</h3><p>Rest 1 minute per 10 metres on speed work. Rushing rest turns speed training into conditioning.</p></div>
+      <div><h3>Quality over volume</h3><p>Stop a speed session when times drop by more than 3–5%. Extra reps on tired legs build bad mechanics.</p></div>
+      <div><h3>Sleep 8–9 hours</h3><p>Muscle repair and nervous system recovery happen at night. It is the cheapest performance gain available.</p></div>
+      <div><h3>Progress gradually</h3><p>Add load or distance by about 5–10% a week, and take an easier week every 4th week.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="diet" class="dietbg">
+  <div class="wrap">
+    <h2>Diet and fuelling</h2>
+    <p class="lead">Enter your body weight for daily targets. These are typical ranges for sprinters in training, not a prescription.</p>
+    <div class="calc">
+      <div><label for="kg">Body weight (kg)</label><input id="kg" type="number" min="35" max="150" value="70"></div>
+      <div><label for="load">Training load</label>
+        <select id="load"><option value="5">Moderate week</option><option value="6" selected>Hard week</option><option value="7">Peak week</option></select></div>
+    </div>
+    <div class="out" aria-live="polite">
+      <div><b id="o-kcal">–</b><span>calories per day</span></div>
+      <div><b id="o-carb">–</b><span>g carbohydrate</span></div>
+      <div><b id="o-pro">–</b><span>g protein</span></div>
+      <div><b id="o-fat">–</b><span>g fat</span></div>
+      <div><b id="o-wat">–</b><span>litres of fluid</span></div>
+    </div>
+
+    <table class="meals">
+      <caption>Sample training day</caption>
+      <tr><th>Breakfast</th><td>Oats cooked in milk with banana and nuts, 3 eggs or paneer scramble, a glass of juice.</td></tr>
+      <tr><th>Mid-morning</th><td>Curd or Greek yoghurt with fruit and honey.</td></tr>
+      <tr><th>Pre-training<br>(60–90 min before)</th><td>Rice or two rotis with dal, or a peanut butter sandwich with a banana. Keep fat and fibre low.</td></tr>
+      <tr><th>Post-training<br>(within 45 min)</th><td>Milk or a whey shake with banana, plus a handful of dates. Aim for 20–30 g protein with fast carbohydrate.</td></tr>
+      <tr><th>Lunch</th><td>Rice or roti, chicken, fish or tofu, mixed vegetables, salad, a spoon of ghee or olive oil.</td></tr>
+      <tr><th>Evening snack</th><td>Roasted chana, fruit, or a sandwich with egg or cheese.</td></tr>
+      <tr><th>Dinner</th><td>Rice or potatoes, lentils or lean meat, cooked vegetables, curd.</td></tr>
+      <tr><th>Before bed</th><td>Warm milk or casein-rich yoghurt to support overnight repair.</td></tr>
+    </table>
+
+    <div class="two">
+      <div><h3 style="font-size:28px">Eat more of</h3>
+        <ul><li>Rice, potatoes, oats, roti and fruit for training fuel</li><li>Eggs, dairy, fish, chicken, lentils and tofu for protein</li><li>Nuts, seeds, olive oil and oily fish for healthy fats</li><li>Colourful vegetables and citrus for micronutrients</li></ul></div>
+      <div><h3 style="font-size:28px">Limit</h3>
+        <ul><li>Deep-fried food and sweets close to training</li><li>Large fibre-heavy meals within 2 hours of speed sessions</li><li>Energy drinks and heavy caffeine late in the day</li><li>Alcohol, which slows recovery and disrupts sleep</li></ul></div>
+    </div>
+    <p class="note"><strong>Hydration:</strong> drink steadily through the day and check that urine is pale yellow. On hot days add a pinch of salt or an electrolyte drink around training.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">This plan is general information for healthy adults. Check with a coach, doctor or sports dietitian before starting, especially if you are returning from injury, under 18, or have a medical condition. Stop any session that causes sharp pain.</div>
+</footer>
+
+<script>
+var days=[
+{d:"Mon",t:"Acceleration and lower-body strength",f:"Drive phase, first 30 metres",r:[
+["Warm-up","20 min drills and strides"],
+["Block starts","6 × 20–30 m, rest 3–4 min<span class='tag'>Max effort</span>"],
+["Sled sprints","4 × 20 m, light load, rest 3 min"],
+["Squat","4 × 4–5 at heavy load"],
+["Romanian deadlift","3 × 6"],
+["Core","Plank and hanging leg raise, 3 rounds"]]},
+{d:"Tue",t:"Tempo and mobility",f:"Aerobic base and recovery from Monday",r:[
+["Warm-up","15 min easy"],
+["Tempo runs","8 × 100 m at 70%, walk back recovery"],
+["Hurdle mobility","10 min hips and ankles"],
+["Foam rolling","10 min quads, hamstrings, calves"]]},
+{d:"Wed",t:"Max velocity and upper body",f:"Top speed mechanics",r:[
+["Warm-up","25 min with extra drills"],
+["Flying sprints","4–5 × 30 m with a 30 m build-up, rest 5–6 min<span class='tag'>Max effort</span>"],
+["Bench press","4 × 5"],
+["Pull-ups","3 × 6–8"],
+["Medicine ball throws","4 × 6 overhead and rotational"]]},
+{d:"Thu",t:"Active recovery",f:"Absorb the week's work",r:[
+["Easy bike or swim","20–30 min, low effort"],
+["Mobility flow","20 min hips, hamstrings, thoracic spine"],
+["Plyometric technique","Low-volume pogo jumps, 3 × 15"]]},
+{d:"Fri",t:"Speed endurance and power",f:"Hold speed from 60 to 100 metres",r:[
+["Warm-up","25 min"],
+["Speed endurance","3 × 100–120 m at 95%, rest 8–10 min<span class='tag'>Max effort</span>"],
+["Power clean","4 × 3"],
+["Hip thrust","3 × 8"],
+["Box jumps","3 × 5"]]},
+{d:"Sat",t:"Special endurance or hills",f:"Strong finish, mental toughness",r:[
+["Warm-up","20 min"],
+["Option A: hill sprints","8 × 40 m on a steady incline, walk down"],
+["Option B: 200 m reps","3 × 150 m at 90%, rest 8 min"],
+["Cool-down","10 min jog and stretching"]]},
+{d:"Sun",t:"Rest day",f:"Full rest",rest:1,r:[
+["Training","None"],
+["Sleep","Aim for 9 hours"],
+["Food","Eat normally; do not cut calories on rest days"],
+["Optional","Short walk or a massage"]]}];
+var tabs=document.getElementById("tabs"),panel=document.getElementById("panel");
+function show(i){
+  var d=days[i];
+  [].forEach.call(tabs.children,function(b,j){b.setAttribute("aria-selected",j===i)});
+  var rows=d.r.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td></tr>"}).join("");
+  panel.innerHTML="<div class='day"+(d.rest?" rest":"")+"'><h3>"+d.t+"</h3><div class='focus'>"+d.f+"</div><table>"+rows+"</table></div>";
+}
+days.forEach(function(d,i){
+  var b=document.createElement("button");
+  b.textContent=d.d;b.setAttribute("role","tab");
+  b.onclick=function(){show(i)};
+  tabs.appendChild(b);
+});
+var today=(new Date().getDay()+6)%7;
+show(today);
+
+function calc(){
+  var kg=parseFloat(document.getElementById("kg").value)||0;
+  var c=parseFloat(document.getElementById("load").value);
+  if(kg<35||kg>150){return}
+  var carb=Math.round(kg*c),pro=Math.round(kg*1.8),fat=Math.round(kg*1.1);
+  var kcal=Math.round((carb*4+pro*4+fat*9)/50)*50;
+  document.getElementById("o-carb").textContent=carb;
+  document.getElementById("o-pro").textContent=pro;
+  document.getElementById("o-fat").textContent=fat;
+  document.getElementById("o-kcal").textContent=kcal.toLocaleString();
+  document.getElementById("o-wat").textContent=(kg*0.04+0.5).toFixed(1);
+}
+document.getElementById("kg").oninput=calc;
+document.getElementById("load").onchange=calc;
+calc();
+</script>
+</body>
+</html>
